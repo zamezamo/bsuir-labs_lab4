@@ -13,6 +13,11 @@
 int main()
 {
     int n, temp = 0;
+    char filenam[10];
+    printf("enter file name without extension - ");
+    scanf("%s", filenam);
+    char* filename = strcat(filenam, ".txt");
+    printf("------------------------------------\n  file name is %s\n\n", filename);
     printf("How many numbers? - ");
     while (1)
     {
@@ -22,7 +27,7 @@ int main()
         else
             break;
     }
-    FILE *file = fopen("task1.txt", "wt");
+    FILE *file = fopen(filename, "wt");
     int *number = (int *)malloc(n * sizeof(int));
     for (int i = 0; i < n; i++)
     {
@@ -41,10 +46,10 @@ int main()
         fprintf(file, "%d ", number[i]);
     }
     fclose(file);
-    FILE *output = fopen("task1.txt", "rt");
+    FILE *output = fopen(filename, "rt");
     char str[128];
-    fgets(str, 2*n, file);
-    fclose(file);
+    fgets(str, 2 * n, output);
+    fclose(output);
     printf("%s", str);
     return 0;
 }
